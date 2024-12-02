@@ -19,4 +19,8 @@ public class UserController {
         System.out.println("欢迎访问用户服务");
         return "this is userService";
     }
+    @GetMapping("/test")
+    public String test(){
+        return "test";
+    }
 }
