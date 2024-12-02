@@ -12,7 +12,7 @@ import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 public class SecurityConfig implements WebSecurityConfigurer {
     @Override
     public void init(SecurityBuilder builder) throws Exception {
-
+        System.out.println(builder.toString());
     }
 
     @Override
