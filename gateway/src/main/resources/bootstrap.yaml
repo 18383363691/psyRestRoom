@@ -1,0 +1,10 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: http://192.168.1.226:8848
+        name: api-gateway
+        file-extension: yaml
+        group: DEFAULT_GROUP
+        username: nacos
+        password: nacos

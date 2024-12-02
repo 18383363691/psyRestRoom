@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: adminListenerServer
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ENC(w1Teu1o/5A3viCdkQ3VkC6++hMwBrsGip37LnjTi0h0Xqa3MoQ3ilOxSbg9otQTuoTm/Z3bTPPFqsBlYFo+6aiNdyOe25oON5AqF0mycFxMreo3VVrkn8ZkpXETkUBYt)
+    username: ENC(jSszHsa26QY5M/aI7aM6pNtQGcyEnPU0NJIHG5C4oN5uu00PGgkyh+Up/gHIIlah)
+    password: ENC(VhlpQvPt9FUqy4sbpweQ5Q5PQ/mspFmOUV+RdjI4VGfekp/gK/2swL6b5cgnPWDa)
+  cloud:
+    nacos:
+      discovery:
+        server-addr: http://192.168.1.93:8848
+        username: nacos
+        password: nacos
+      config:
+        import-check:
+          enabled: true
+        file-extension: yml
+    sentinel:
+      transport:
+        dashboard: localhost:8080  #??sentinel???
+      http-method-specify: true #????????
+
+nacos:
+  core:
+    auth:
+      enabled:true
+jasypt:
+  encryptor:
+    password: f0d15ddc
+server:
+  port: 8088
+feign:
+  sentinel:
+    enabled: true

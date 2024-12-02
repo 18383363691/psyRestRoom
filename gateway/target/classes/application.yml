@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: api-gateway
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: xu123
+    url: jdbc:mysql://localhost:3306/tea_data?severTimezone=UTC
+  cloud:
+    gateway:
+#      discovery:
+#        locator:
+#          enabled: true  #????nacos??????????
+      routes:
+        - id: user_route #???????
+          uri: lb://user-center
+          predicates: #????????
+            - Path=/user-service/**
+            - After=2024-10-18T17:02:25.409334100+08:00[Asia/Shanghai]
+            - CheckAuth=xu
+          filters:
+            - RewritePath=/user-service(?<segment>.*),/$\{segment}
+        - id: bookStore_route
+          uri: lb://bookStore-center # lb?locadBanlance) ???????????
+          predicates:
+            - Path=/book-service/**
+          filters:
+            - RewritePath=/book-service(?<segment>.*),$\{segment}
+    globalcors:
+      cors-configurations:
+        '[/**]':
+          allowedOrigins: "*"
+          allowedHeaders: "*"
+          allowedMethods:
+            - GET
+            - POST
+    nacos:
+      discovery:
+        server-addr: http://192.168.1.226:8848
+        username: nacos
+        password: nacos
+      config:
+        import-check:
+          enabled: false
+        file-extension: yml
+    sentinel:
+      eager: true
+      transport:
+        dashboard: localhost:8080  #??sentinel???
+server:
+  port: 8088
